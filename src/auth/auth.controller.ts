@@ -6,10 +6,17 @@ import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('/signUp')
+  @Post('/signup')
   signUp(
     @Body(ValidationPipe) authCredentialDto: AuthCredentialDto,
   ): Promise<void> {
     return this.authService.signUp(authCredentialDto);
+  }
+
+  @Post('/signin')
+  signIp(
+    @Body(ValidationPipe) authCredentialDto: AuthCredentialDto,
+  ): Promise<void> {
+    return this.authService.signIn(authCredentialDto);
   }
 }
